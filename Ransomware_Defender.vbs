@@ -1,5 +1,5 @@
 'File Name: Ransomware_Defender.vbs
-'Version: v1.0, 3/11/2019
+'Version: v1.0, 8/23/2019
 'Author: Justin Grimes, 8/20/2019
 
 Option Explicit

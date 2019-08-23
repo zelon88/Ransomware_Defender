@@ -1,5 +1,5 @@
 'File Name: Ransomware_Defender.vbs
-'Version: v1.3, 8/23/2019
+'Version: v1.3.1, 8/23/2019
 'Author: Justin Grimes, 8/20/2019
 
 Option Explicit
@@ -179,7 +179,7 @@ End Function
 
 'A function shut down the machine when triggered.
 Function killWorkstation()
-  oShell.Run "c:\Windows\System32\cmd.exe /c C:\windows\system32\shutdown.exe", 0, false
+     oShell.Run "C:\Windows\System32\shutdown.exe /s /f /t 0", 0, false
 End Function
 
 'The main logic of the program which makes use of the code and functions above.

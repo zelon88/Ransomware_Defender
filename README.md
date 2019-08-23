@@ -6,19 +6,19 @@ PRIMARY LANGUAGE: VBScript
  
 AUTHOR: Justin Grimes
 
-ORIGINAL VERSION DATE: 8/23/2018
+ORIGINAL VERSION DATE: 8/23/2019
 
 CURRENT VERSION DATE: 8/23/2019
 
-VERSION: v1.0
+VERSION: v1.3
 
 
 DESCRIPTION: An application for early warning about potential ransomware activity on a domain workstation. 
 On first run, Ransomware_Defender creates "Perimiter Files" in strategic places on the local filesystem.
-On subsequent runs, Ransomware_Defender will check that the perimiter files still exist.\
+On subsequent runs, Ransomware_Defender will check that the perimiter files still exist.
 If perimiter files are found we compare them to the original perimiter file. 
 If perimiter files are missing they are searched for. 
-If perimiterFiles have been tampered with the workstation will emit a Log, an email notification, and shut down to prevent further damage.
+If perimiterFiles have been tampered with the workstation will emit a Log, an email notification, & shut down to prevent further damage.
 
 
 

@@ -1,5 +1,5 @@
 'File Name: Ransomware_Defender.vbs
-'Version: v1.2, 8/23/2019
+'Version: v1.3, 8/23/2019
 'Author: Justin Grimes, 8/20/2019
 
 Option Explicit
@@ -41,7 +41,7 @@ dim oShell, oShell2, oFSO, perimiterFile, perimiterFiles, perimiterCheck, perimi
   perimiterFileHash = "cd 7e 60 a8 43 ca 66 50 6f 7e 48 10 3b 09 32 ec 6c 62 f1 81 1c 70 44 be ac 04 67 c6 8a d7 6e 18"
   ' ----------
 
-' Set global variables for the session.
+'Set global variables for the session.
 Set oShell = WScript.CreateObject("WScript.Shell")
 Set oShell2 = CreateObject("Shell.Application")
 Set oFSO = CreateObject("Scripting.FileSystemObject")
@@ -121,7 +121,7 @@ Function searchForPerimiterFile(perimiterFile)
   Next
 End Function
 
-' A function to detect each perimiter file on the system and ensure that it has not been altered.
+'A function to detect each perimiter file on the system and ensure that it has not been altered.
 'Returns TRUE when perimiter files exist and are valid.
 Function verifyPerimiterFiles()
   perimiterCheck = TRUE
@@ -153,6 +153,7 @@ Function createLog(strEventInfo)
   End If
 End Function
 
+'A function to create a Warning.mail file. Use to prepare an email before calling sendEmail().
 Function createEmail()
   If oFSO.FileExists(mailFile) Then
     oFSO.DeleteFile(mailFile)
@@ -171,18 +172,18 @@ Function createEmail()
   oFile.close
 End Function
 
-'A function for running SendMail.
+'A function for running SendMail to send a prepared Warning.mail email message.
 Function sendEmail() 
   oShell.run "c:\Windows\System32\cmd.exe /c sendmail.exe " & mailFile, 0, TRUE
 End Function
 
-'A function to display a warning message to the user and kill the machine after a specified time.
+'A function shut down the machine when triggered.
 Function killWorkstation()
   oShell.Run "c:\Windows\System32\cmd.exe /c C:\windows\system32\shutdown.exe", 0, false
 End Function
 
 'The main logic of the program which makes use of the code and functions above.
-If isUserAdmin <> FALSE Then
+If isUserAdmin = TRUE Then
   clearCache()
   If verifyPerimiterFiles = FALSE Then
     createLog("The machine " & strComputerName & " has been disabled due to potential ransomware activity!")

@@ -1,3 +1,10 @@
+8/23/2019 - v1.3 - Clean up code, syntax, loose ends. 
+Justin Grimes
+
+-v1.3.
+-Improve comments. Small fixes, typos.
+
+--------------------
 8/23/2019 - v1.2
 Justin Grimes
 

@@ -188,8 +188,7 @@ If isUserAdmin <> FALSE Then
     createLog("The machine " & strComputerName & " has been disabled due to potential ransomware activity!")
     createEmail()
     sendEmail()
-    'killWorkstation()
-    msgbox "SHUTDOWN TRIGGERED"
+    killWorkstation()
   End If
 Else
   restartAsAdmin()

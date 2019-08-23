@@ -1,5 +1,5 @@
 'File Name: Ransomware_Defender.vbs
-'Version: v1.0, 8/23/2019
+'Version: v1.1, 8/23/2019
 'Author: Justin Grimes, 8/20/2019
 
 Option Explicit
@@ -80,14 +80,14 @@ End Function
 'Then make C:\Program Files\Ransomware_Defender\Cache.
 'Then verify the cache files inside.
 Function clearCache()
-  If Not oFSO.FolderExists(tempDir1) Then
-    oFSO.CreateFolder(tempDir1)
+  If Not oFSO.FolderExists(tempDir0) Then
+    oFSO.CreateFolder(tempDir0)
   End If
-  If oFSO.FolderExists(tempDir1) Then
-    If Not oFSO.FolderExists(tempDir0) Then
-      oFSO.CreateFolder(tempDir0)
+  If oFSO.FolderExists(tempDir0) Then
+    If Not oFSO.FolderExists(tempDir1) Then
+      oFSO.CreateFolder(tempDir1)
     End If
-    If oFSO.FolderExists(tempDir0) Then
+    If oFSO.FolderExists(tempDir1) Then
       If Not oFSO.FolderExists(tempDir) Then
         oFSO.CreateFolder(tempDir)
       End If

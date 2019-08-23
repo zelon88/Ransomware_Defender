@@ -10,7 +10,7 @@ ORIGINAL VERSION DATE: 8/23/2019
 
 CURRENT VERSION DATE: 8/23/2019
 
-VERSION: v1.1
+VERSION: v1.2
 
 
 DESCRIPTION: An application for early warning about potential ransomware activity on a domain workstation. 

@@ -1,3 +1,10 @@
+8/23/2019 - v1.2
+Justin Grimes
+
+-v1.2.
+-Fix bugs with generation of perimiter files.
+
+--------------------
 8/23/2019 - v1.0
 Justin Grimes
 

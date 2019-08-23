@@ -1,5 +1,5 @@
 'File Name: Ransomware_Defender.vbs
-'Version: v1.1, 8/23/2019
+'Version: v1.2, 8/23/2019
 'Author: Justin Grimes, 8/20/2019
 
 Option Explicit
@@ -16,9 +16,9 @@ dim oShell, oShell2, oFSO, perimiterFile, perimiterFiles, perimiterCheck, perimi
   ' The "scriptName" is the filename of this script.
   scriptName = "Ransomware_Defender.vbs"
   ' The "appPath" is the full absolute path for the script directory, with trailing slash.
-  appPath = "\\SERVER\AutomationScripts\Ransomware_Defender\"
+  appPath = "\\SERVER\Scripts\Ransomware_Defender\"
   ' The "logPath" is the full absolute path for where network-wide logs are stored.
-  logPath = "\\SERVER\Logs"
+  logPath = "\\SERVER\Logs\"
   ' The "companyName" the the full, unabbreviated name of your organization.
   companyName = "Company Inc."
   ' The "companyAbbr" is the abbreviated name of your organization.
@@ -114,10 +114,10 @@ Function searchForPerimiterFile(perimiterFile)
   sourcefolder = Replace(perimiterFile, defaultPerimiterFileName, "")
   Set folder = oFSO.Getfolder(sourcefolder)  
   For Each file In folder.files
-      targetFileName = oFSO.GetBasename(file)
-      If InStr(lcase(targetFileName), lcase(searchname1)) > 0 Then
-        searchForPerimiterFile = FALSE
-      End If
+    targetFileName = oFSO.GetBasename(file)
+    If InStr(lcase(targetFileName), lcase(searchname1)) > 0 Or InStr(lcase(searchname1), lcase(targetFileName)) > 0 Then
+      searchForPerimiterFile = FALSE
+    End If
   Next
 End Function
 
@@ -125,6 +125,7 @@ End Function
 'Returns TRUE when perimiter files exist and are valid.
 Function verifyPerimiterFiles()
   perimiterCheck = TRUE
+  verifyPerimiterFiles = TRUE
   For Each perimiterFile In perimiterFiles
     If Not oFSO.FileExists(perimiterFile) Then
       perimiterCheck = searchForPerimiterFile(perimiterFile)
@@ -135,12 +136,12 @@ Function verifyPerimiterFiles()
       If Not tempOutput.AtEndOfStream Then 
         tempData = tempOutput.ReadAll()
       End If
-      If tempData = perimiterFileHash Then
-        perimiterCheck = FALSE
-      End If
+    End If
+    If Trim(tempData) = Trim(perimiterFileHash) Or perimiterCheck = FALSE Then
+      verifyPerimiterFiles = FALSE
+      Exit For
     End If
   Next
-  verifyPerimiterFiles = perimiterCheck
 End Function
 
 'A function to create a log file.
@@ -183,12 +184,12 @@ End Function
 'The main logic of the program which makes use of the code and functions above.
 If isUserAdmin <> FALSE Then
   clearCache()
-  verifyPerimiterFiles()
   If verifyPerimiterFiles = FALSE Then
     createLog("The machine " & strComputerName & " has been disabled due to potential ransomware activity!")
     createEmail()
     sendEmail()
-    killWorkstation()
+    'killWorkstation()
+    msgbox "SHUTDOWN TRIGGERED"
   End If
 Else
   restartAsAdmin()

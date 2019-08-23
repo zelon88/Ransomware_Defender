@@ -1,0 +1,6 @@
+8/23/2019 - v1.0
+Justin Grimes
+
+-v1.0.
+-Commit application.
+-All code seems to work. All functions exit with no errors and expected values. 

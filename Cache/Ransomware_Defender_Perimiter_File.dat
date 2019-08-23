@@ -1,0 +1,10 @@
+!!! PLEASE DO NOT MODIFY THIS FILE !!!
+
+This is a Ransomware_Defender permimiter file! It contains some arbitrary information that the Ransomware_Defender.vbs script as an early-warning beacon to determine when unauthorized disk changes occur.
+
+If this file changes on it's own; Ransonware_Defender will assume that a malicious application is modifying the local filesystem. 
+If such activity is detected, this script will send a notification, create a logfile, and shut down the local machine immediately.
+
+
+
+v1.0

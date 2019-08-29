@@ -1,3 +1,10 @@
+8/28/2019 - v1.4 - Fix carrige return and comparison bug.
+
+-v1.4.
+-Fix hidden carrige return messing up comparison.
+-Also fix incorrect comparison operator.
+
+--------------------
 8/23/2019 - v1.3 - Clean up code, syntax, loose ends. 
 Justin Grimes
 

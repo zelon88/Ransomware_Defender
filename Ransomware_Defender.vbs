@@ -1,5 +1,5 @@
 'File Name: Ransomware_Defender.vbs
-'Version: v1.3.1, 8/23/2019
+'Version: v1.4, 8/28/2019
 'Author: Justin Grimes, 8/20/2019
 
 Option Explicit
@@ -16,9 +16,9 @@ dim oShell, oShell2, oFSO, perimiterFile, perimiterFiles, perimiterCheck, perimi
   ' The "scriptName" is the filename of this script.
   scriptName = "Ransomware_Defender.vbs"
   ' The "appPath" is the full absolute path for the script directory, with trailing slash.
-  appPath = "\\SERVER\Scripts\Ransomware_Defender\"
+  appPath = "C:\Users\Justin\Desktop\Ransomware_Defender\"
   ' The "logPath" is the full absolute path for where network-wide logs are stored.
-  logPath = "\\SERVER\Logs\"
+  logPath = "C:\Users\Justin\Desktop\Ransomware_Defender\Logs"
   ' The "companyName" the the full, unabbreviated name of your organization.
   companyName = "Company Inc."
   ' The "companyAbbr" is the abbreviated name of your organization.
@@ -126,18 +126,19 @@ End Function
 Function verifyPerimiterFiles()
   perimiterCheck = TRUE
   verifyPerimiterFiles = TRUE
+  perimiterFileHash = Trim(Replace(Replace(Replace(Replace(perimiterFileHash, Chr(10), ""), Chr(13), ""), " ", ""), "  ", ""))
   For Each perimiterFile In perimiterFiles
     If Not oFSO.FileExists(perimiterFile) Then
       perimiterCheck = searchForPerimiterFile(perimiterFile)
       oFSO.Copyfile defaultPerimiterFile, perimiterFile
     Else
       oShell.run "c:\Windows\System32\cmd.exe /c CertUtil -hashfile """ & perimiterFile & """ SHA256 | find /i /v ""SHA256"" | find /i /v ""certutil"" > """ & tempFile & """", 0, TRUE
-      Set tempOutput = oFSO.OpenTextFile(tempFile)
+      Set tempOutput = oFSO.OpenTextFile(tempFile, 1, FALSE, 0)
       If Not tempOutput.AtEndOfStream Then 
-        tempData = tempOutput.ReadAll()
+        tempData = Trim(Replace(Replace(Replace(Replace(tempOutput.ReadAll(), Chr(10), ""), Chr(13), ""), " ", ""), "  ", ""))
       End If
     End If
-    If Trim(tempData) = Trim(perimiterFileHash) Or perimiterCheck = FALSE Then
+    If perimiterFileHash <> tempData Or perimiterCheck = FALSE Then
       verifyPerimiterFiles = FALSE
       Exit For
     End If
@@ -179,7 +180,7 @@ End Function
 
 'A function shut down the machine when triggered.
 Function killWorkstation()
-     oShell.Run "C:\Windows\System32\shutdown.exe /s /f /t 0", 0, false
+  oShell.Run "C:\Windows\System32\shutdown.exe /s /f /t 0", 0, false
 End Function
 
 'The main logic of the program which makes use of the code and functions above.
@@ -189,7 +190,7 @@ If isUserAdmin = TRUE Then
     createLog("The machine " & strComputerName & " has been disabled due to potential ransomware activity!")
     createEmail()
     sendEmail()
-    killWorkstation()
+    'killWorkstation()
   End If
 Else
   restartAsAdmin()

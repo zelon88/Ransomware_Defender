@@ -1,5 +1,5 @@
 'File Name: Ransomware_Defender.vbs
-'Version: v1.4, 8/28/2019
+'Version: v1.5, 10/28/2019
 'Author: Justin Grimes, 8/20/2019
 
 Option Explicit
@@ -17,8 +17,8 @@ dim oShell, oShell2, oFSO, perimiterFile, perimiterFiles, perimiterCheck, perimi
   scriptName = "Ransomware_Defender.vbs"
   ' The "appPath" is the full absolute path for the script directory, with trailing slash.
   appPath = "C:\Users\Justin\Desktop\Ransomware_Defender\"
-  ' The "logPath" is the full absolute path for where network-wide logs are stored.
-  logPath = "C:\Users\Justin\Desktop\Ransomware_Defender\Logs"
+  ' The "logPath" is the full absolute path for where network-wide logs are stored, with trailing slash.
+  logPath = "C:\Users\Justin\Desktop\Ransomware_Defender\Logs\"
   ' The "companyName" the the full, unabbreviated name of your organization.
   companyName = "Company Inc."
   ' The "companyAbbr" is the abbreviated name of your organization.
@@ -54,7 +54,7 @@ tempFile = tempDir & "\" & strComputerName & "-Cache.dat"
 strSafeDate = DatePart("yyyy",Date) & Right("0" & DatePart("m",Date), 2) & Right("0" & DatePart("d",Date), 2)
 strSafeTime = Right("0" & Hour(Now), 2) & Right("0" & Minute(Now), 2) & Right("0" & Second(Now), 2)
 strDateTime = strSafeDate & "-" & strSafeTime
-logFileName = logPath & "\" & strComputerName & "-" & strDateTime & "-Ransomware_Defender.txt"
+logFileName = logPath & strComputerName & "-" & strDateTime & "-Ransomware_Defender.txt"
 
 'A function to tell if the script has the required priviledges to run.
 'Returns TRUE if the application is elevated.
@@ -175,7 +175,7 @@ End Function
 
 'A function for running SendMail to send a prepared Warning.mail email message.
 Function sendEmail() 
-  oShell.run "c:\Windows\System32\cmd.exe /c sendmail.exe " & mailFile, 0, TRUE
+  oShell.run "c:\Windows\System32\cmd.exe /c " & appPath & "sendmail.exe " & mailFile, 0, TRUE
 End Function
 
 'A function shut down the machine when triggered.

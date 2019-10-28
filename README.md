@@ -8,9 +8,9 @@ AUTHOR: Justin Grimes
 
 ORIGINAL VERSION DATE: 8/23/2019
 
-CURRENT VERSION DATE: 8/28/2019
+CURRENT VERSION DATE: 10/28/2019
 
-VERSION: v1.4
+VERSION: v1.5
 
 
 DESCRIPTION: An application for early warning about potential ransomware activity on a domain workstation. 

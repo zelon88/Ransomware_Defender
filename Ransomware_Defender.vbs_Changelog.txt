@@ -1,3 +1,10 @@
+10/28/2019 - v1.5 - Use absolute path for sendmail.exe. 
+
+-v1.5.
+-Use absolute paths for sendmail.exe.
+-Make trailing slash in config entries more consistent by requiring it on the logpath going forward.
+
+--------------------
 8/28/2019 - v1.4 - Fix carrige return and comparison bug.
 
 -v1.4.

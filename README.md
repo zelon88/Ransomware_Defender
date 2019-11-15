@@ -47,3 +47,4 @@ NOTES:
 4. To reinstall "Fake Sendmail for Windows" please visit  https://www.glob.com.au/sendmail/
 5. Use absolute UNC paths for network addresses. DO NOT run this from a network drive letter. The restartAsAdmin() function will not work properly.
 6. If using as a startup/logon script it is advised to NOT use a conditional that checks for the prescence of the script prior to running it. Doing so could result in a false negative if ransomware damages Ransomware_Defender before it can be run. Errors produced by such a condition would alert users that something was wrong.
+7. You may get a single false positive the first or second time the script is run. It is reccomended to either comment out the ojbShell.run line in killWorkstation() for the first couple of runs to give the script a chance to get perimiter files settled.

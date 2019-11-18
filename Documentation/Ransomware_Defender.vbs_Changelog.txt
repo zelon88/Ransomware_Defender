@@ -1,0 +1,42 @@
+11/18/2019 - v1.6 - Move mailFile to the tempDir instead of the appPath.
+
+-v1.6.
+-Move mailFile to the tempDir instead of the appPath.
+-Should reduce permission denied errors.
+-Improve code segmentation & visibility via comments that break code into relevant chunks.
+-Improved code comments.
+
+--------------------
+10/28/2019 - v1.5 - Fix sendEmail() function.
+
+-v1.5.
+-Using absolute path for sendEmail() function now instead of relative path.
+
+--------------------
+8/28/2019 - v1.4 - Fix carrige return and comparison bug.
+
+-v1.4.
+-Fix hidden carrige return messing up comparison.
+-Also fix incorrect comparison operator.
+
+--------------------
+8/23/2019 - v1.3 - Clean up code, syntax, loose ends. 
+Justin Grimes
+
+-v1.3.
+-Improve comments. Small fixes, typos.
+
+--------------------
+8/23/2019 - v1.2
+Justin Grimes
+
+-v1.2.
+-Fix bugs with generation of perimiter files.
+
+--------------------
+8/23/2019 - v1.0
+Justin Grimes
+
+-v1.0.
+-Commit application.
+-All code seems to work. All functions exit with no errors and expected values. 
